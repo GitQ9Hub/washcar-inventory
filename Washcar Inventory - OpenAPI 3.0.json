@@ -1,0 +1,741 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Washcar Inventory  OpenAPI 30",
+        "description": "This is a sample Washcar Inventory Server based on the OpenAPI 3.0 specification to manage cars into the washcar.",
+        "x-ibm-annotations": "true",
+        "x-ibm-application-name": "Washcar App",
+        "x-ibm-application-id": "washcar-inventory",
+        "x-ibm-skill-type": "imported",
+        "version": "1.0.1",
+        "x-ibm-application-icon": "<svg/></svg>"
+    },
+    "servers": "default",
+    "security": [
+        {
+            "basic_auth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "car",
+            "description": "Everything about your Cars"
+        },
+        {
+            "name": "washcar",
+            "description": "Access to Washcar orders",
+            "externalDocs": {
+                "description": "Find out more about our washcar"
+            }
+        },
+        {
+            "name": "user",
+            "description": "Operations about user"
+        }
+    ],
+    "paths": {
+        "/car": {
+            "put": {
+                "responses": {
+                    "null": {
+                        "$ref": "#/components/schemas/Errors",
+                        "description": "The HTTP response status code for a 401 error."
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Errors"
+                            }
+                        }
+                    }
+                },
+                "description": "Update an existing car by Id",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Update an existing car",
+                "operationId": "updateCar",
+                "x-ibm-ui-extension": {
+                    "component": "dropdown",
+                    "actions": [
+                        {
+                            "skill_id": "<skill_id where it is refering from>",
+                            "type": "data",
+                            "params": {}
+                        }
+                    ]
+                }
+            },
+            "post": {
+                "responses": {
+                    "null": {
+                        "description": "The HTTP response status code for invalid input"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Errors"
+                            }
+                        }
+                    }
+                },
+                "description": "Add a new car to the washcar",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Add a new car to the washcar",
+                "operationId": "addCar"
+            }
+        },
+        "/car/findByStatus": {
+            "get": {
+                "parameters": [
+                    {
+                        "$ref": "(input reference here)"
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "description": "Multiple status values can be provided with comma separated strings",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Finds Cars by status",
+                "operationId": "findPetsByStatus",
+                "x-ibm-next-actions": [
+                    {
+                        "skill_id": "email-agent",
+                        "utterance": "Email it"
+                    }
+                ]
+            }
+        },
+        "/car/{carId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "ID of the car",
+                        "type": "integer",
+                        "example": 18,
+                        "x-ibm-examples": [
+                            3456,
+                            767
+                        ],
+                        "format": "int64",
+                        "required": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "description": "Pet not found"
+                    }
+                },
+                "description": "Returns a single car",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Find car by ID",
+                "operationId": "getCarById"
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "ID of car that needs to be updated",
+                        "type": "integer",
+                        "example": 18,
+                        "x-ibm-examples": [
+                            3456,
+                            767
+                        ],
+                        "format": "int64",
+                        "required": false,
+                        "schema": {}
+                    },
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "Updated name of the pet",
+                        "type": "string",
+                        "example": "bobby",
+                        "x-ibm-examples": [
+                            "tommy",
+                            "jane"
+                        ],
+                        "required": false,
+                        "schema": {}
+                    },
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "Updated status of the pet",
+                        "type": "string",
+                        "example": "available",
+                        "x-ibm-examples": [
+                            "pending",
+                            "sold"
+                        ],
+                        "required": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "description": "Invalid input"
+                    }
+                },
+                "tags": [
+                    "car"
+                ],
+                "summary": "Updates a car in the washcar with form data",
+                "operationId": "updateCarWithForm"
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "The API key of the app that is making the request.",
+                        "type": "string",
+                        "example": "123456789",
+                        "x-ibm-examples": [
+                            "abcdefghij",
+                            "klmnopqrst"
+                        ],
+                        "required": false,
+                        "schema": {}
+                    },
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "ID of pet to return",
+                        "type": "integer",
+                        "example": 18,
+                        "x-ibm-examples": [
+                            3456,
+                            767
+                        ],
+                        "format": "int64",
+                        "required": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "description": "Invalid pet value"
+                    }
+                },
+                "tags": [
+                    "car"
+                ],
+                "summary": "Deletes a car",
+                "operationId": "deleteCar",
+                "x-ibm-show": "true"
+            }
+        },
+        "/washcar/order": {
+            "post": {
+                "responses": {
+                    "null": {
+                        "description": "HTTP response code of the operation."
+                    }
+                },
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Errors"
+                            }
+                        }
+                    }
+                },
+                "description": "Place a new order in the washcar",
+                "tags": [
+                    "store"
+                ],
+                "summary": "Place an order for a car",
+                "operationId": "placeOrder"
+            }
+        },
+        "/washar/order/{orderId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "ID of pet to fetch",
+                        "type": "integer",
+                        "example": 123456789,
+                        "x-ibm-examples": [
+                            987654321,
+                            111111111
+                        ],
+                        "format": "int64",
+                        "required": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "description": "Order not found"
+                    }
+                },
+                "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.",
+                "tags": [
+                    "washcare"
+                ],
+                "summary": "Find purchase order by ID",
+                "operationId": "getOrderById"
+            }
+        },
+        "/washcar/order/{orderId}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "query",
+                        "description": "ID of the order that needs to be deleted",
+                        "type": "integer",
+                        "example": 12345,
+                        "x-ibm-examples": [
+                            54321,
+                            98765
+                        ],
+                        "format": "int64",
+                        "required": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "null": {
+                        "responses": {
+                            "default": {
+                                "description": "successful operation"
+                            }
+                        },
+                        "tags": [
+                            "user"
+                        ],
+                        "summary": "Logs out current logged in user session",
+                        "operationId": "logoutUser",
+                        "$schema[description]": "The HTTP response status code.",
+                        "description": "HTTP response status code"
+                    }
+                },
+                "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors",
+                "tags": [
+                    "washcar"
+                ],
+                "summary": "Delete purchase order by ID",
+                "operationId": "deleteOrder"
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "statusParam": {
+                "in": "query",
+                "name": "status",
+                "description": "Status values that need to be considered for filter",
+                "required": false,
+                "explode": true,
+                "x-ibm-ui-extension": {
+                    "component": "dropdown",
+                    "actions": [
+                        {
+                            "skill_id": "status1.0.0",
+                            "type": "data",
+                            "params": null
+                        }
+                    ]
+                },
+                "schema": {
+                    "default": "checkin",
+                    "type": "string",
+                    "enum": [
+                        "checkin",
+                        "pending",
+                        "washing",
+                        "available",
+                        "chek out"
+                    ]
+                }
+            }
+        },
+        "requestBodies": {
+            "Car": {
+                "description": "Car object that needs to be added to the washcar",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Car"
+                        }
+                    }
+                }
+            },
+            "UserArray": {
+                "description": "List of user object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "basic_auth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        },
+        "schemas": {
+            "Errors": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorItem",
+                            "description": "The Error object contains errors array that lists all of the errors that have occurred. The Error object has the following properties:- errors: An array of ErrorItem objects."
+                        },
+                        "description": "The Error object contains errors array that lists all of the errors that have occurred. The Error object has the following properties:- errors: An array of ErrorItem objects."
+                    }
+                },
+                "required": [
+                    "errors"
+                ],
+                "description": "The Error object contains errors array that lists all of the errors that have occurred. The Error object has the following properties:- errors: An array of ErrorItem objects."
+            },
+            "ErrorItem": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "Error Code",
+                        "example": "ERR_BAD_REQUEST",
+                        "x-ibm-examples": [
+                            "ERR_NOT_FOUND",
+                            "ERR_INTERNAL_SERVER",
+                            "ERR_INTERNAL_SERVER_ERROR"
+                        ]
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Human readable message for this error",
+                        "example": "Invalid input",
+                        "x-ibm-examples": [
+                            "Not found",
+                            "Internal error"
+                        ]
+                    }
+                },
+                "additionalProperties": true,
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "description": "Each error must have a code and a message"
+            },
+            "Order": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique order id",
+                        "example": 10,
+                        "format": "int64"
+                    },
+                    "petId": {
+                        "type": "integer",
+                        "description": "ID of pet that needs to be fetched",
+                        "example": 198772,
+                        "format": "int64"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The number of units to order.",
+                        "example": 7,
+                        "format": "int32"
+                    },
+                    "shipDate": {
+                        "type": "string",
+                        "description": "The date the item was shipped.",
+                        "example": "2021-01-01",
+                        "x-ibm-examples": [
+                            "2021-02-02",
+                            "2021-03-03",
+                            "2021-01-02",
+                            "2021-01-03"
+                        ],
+                        "format": "date",
+                        "x-ibm-category": "Date"
+                    },
+                    "status": {
+                        "enum": [
+                            "placed",
+                            "approved",
+                            "delivered"
+                        ],
+                        "description": "Order Status. One of: `placed`, `approved`, `delivered`.",
+                        "example": "approved",
+                        "x-ibm-examples": [
+                            "placed",
+                            "delivered"
+                        ],
+                        "type": "string"
+                    },
+                    "complete": {
+                        "type": "boolean",
+                        "description": "If true, the order is considered completed.",
+                        "example": true,
+                        "x-ibm-examples": [
+                            false
+                        ]
+                    }
+                },
+                "xml": {
+                    "name": "order"
+                }
+            },
+            "Customer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The unique identifier for a customer.",
+                        "example": 100000,
+                        "format": "int64"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the customer.",
+                        "example": "fehguy"
+                    },
+                    "address": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Address",
+                            "description": "The address of the customer."
+                        },
+                        "description": "The address of the customer.",
+                        "xml": {
+                            "name": "addresses",
+                            "wrapped": true
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "customer"
+                }
+            },
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "street": {
+                        "type": "string",
+                        "example": "437 Lytton"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "The city in which the address is located.",
+                        "example": "Palo Alto",
+                        "x-ibm-examples": [
+                            "San Francisco",
+                            "New York"
+                        ]
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "A value included in the request, generated by the client application, that is returned to the client as-is. The client can use this parameter to maintain state.",
+                        "example": "CA",
+                        "x-ibm-examples": [
+                            "NY",
+                            "FL"
+                        ]
+                    },
+                    "zip": {
+                        "type": "string",
+                        "description": "The zip code of the address",
+                        "example": "94301",
+                        "x-ibm-examples": [
+                            "94086",
+                            "94303"
+                        ]
+                    }
+                },
+                "xml": {
+                    "name": "address"
+                }
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the category.",
+                        "example": 1,
+                        "x-ibm-examples": [
+                            2,
+                            3
+                        ],
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the category.",
+                        "example": "Dogs",
+                        "x-ibm-examples": [
+                            "Cats",
+                            "Birds"
+                        ]
+                    }
+                },
+                "xml": {
+                    "name": "category"
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The unique identifier of the user.",
+                        "example": 10,
+                        "format": "int64"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the user.",
+                        "example": "theUser"
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "description": "The user's first name.",
+                        "example": "John"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "The last name of the user.",
+                        "example": "James",
+                        "x-ibm-examples": [
+                            "Smith",
+                            "Williams"
+                        ]
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the user.",
+                        "example": "john@email.com",
+                        "x-ibm-examples": [
+                            "jane@email.com",
+                            "tom@email.com"
+                        ],
+                        "x-ibm-category": "Email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The user's password.",
+                        "example": "12345"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "The user's phone number.",
+                        "example": "12345"
+                    },
+                    "userStatus": {
+                        "type": "integer",
+                        "description": "User Status",
+                        "example": 1,
+                        "format": "int32"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "Tag": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The unique identifier of the tag.",
+                        "example": 18,
+                        "x-ibm-examples": [
+                            3456,
+                            767
+                        ],
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the tag.",
+                        "example": "tag1",
+                        "x-ibm-examples": [
+                            "tag2",
+                            "tag3"
+                        ]
+                    }
+                },
+                "xml": {
+                    "name": "tag"
+                }
+            },
+            "ApiResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "HTTP status code",
+                        "example": 123,
+                        "x-ibm-examples": [
+                            456,
+                            789
+                        ],
+                        "format": "int32"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of data.",
+                        "example": "object",
+                        "x-ibm-examples": [
+                            "string",
+                            "number"
+                        ]
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Response message",
+                        "example": "successful operation",
+                        "x-ibm-examples": [
+                            "oops",
+                            "hello world"
+                        ]
+                    }
+                },
+                "xml": {
+                    "name": "##default"
+                }
+            },
+            "Car": true
+        }
+    }
+}
