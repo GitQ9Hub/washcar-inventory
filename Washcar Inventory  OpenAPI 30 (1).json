@@ -471,9 +471,9 @@
                         "example": 10,
                         "format": "int64"
                     },
-                    "petId": {
+                    "carId": {
                         "type": "integer",
-                        "description": "ID of pet that needs to be fetched",
+                        "description": "ID of car that needs to be fetched",
                         "example": 198772,
                         "format": "int64"
                     },
