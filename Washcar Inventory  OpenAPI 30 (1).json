@@ -516,8 +516,7 @@
                         "example": true,
                         "x-ibm-examples": "check out"
                             false
-                        ]
-                    }
+                        }
                 },
                 "xml": {
                     "name": "order"
