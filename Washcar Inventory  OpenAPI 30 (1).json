@@ -174,10 +174,10 @@
                         "in": "query",
                         "description": "Updated name of the car",
                         "type": "string",
-                        "example": "bobby",
+                        "example": "2017 124 Spider ",
                         "x-ibm-examples": [
-                            "tommy",
-                            "jane"
+                            "1980 Fiat 131",
+                            "2016 695 Biposto"
                         ],
                         "required": false,
                         "schema": {}
@@ -185,7 +185,7 @@
                     {
                         "name": "",
                         "in": "query",
-                        "description": "Updated name of the car",
+                        "description": "Updated status of the car",
                         "type": "string",
                         "example": "available",
                         "x-ibm-examples": [
@@ -483,38 +483,38 @@
                         "example": 7,
                         "format": "int32"
                     },
-                    "shipDate": {
+                    "deliveryDate": {
                         "type": "string",
-                        "description": "The date the item was shipped.",
-                        "example": "2021-01-01",
+                        "description": "The date the car was delivered.",
+                        "example": "2021-01-01-19-32-00",
                         "x-ibm-examples": [
-                            "2021-02-02",
-                            "2021-03-03",
-                            "2021-01-02",
-                            "2021-01-03"
+                            "2021-02-02-06-18-24",
+                            "2021-03-03-12-05-30",
+                            "2021-01-02-17-45-23",
+                            "2021-01-03-10-02-45"
                         ],
                         "format": "date",
                         "x-ibm-category": "Date"
                     },
                     "status": {
                         "enum": [
-                            "placed",
-                            "approved",
-                            "delivered"
+                            "check in",
+                            "pending",
+                            "washing",
+                            "available",
+                            "check out"
                         ],
-                        "description": "Order Status. One of: `placed`, `approved`, `delivered`.",
-                        "example": "approved",
-                        "x-ibm-examples": [
-                            "placed",
-                            "delivered"
-                        ],
+                        "description": "Order Status. One of: `check in`, `pending`, `washing`, `available`, `chek out`.",
+                        "example": "available",
+                        "x-ibm-examples": "pending"
+                         
                         "type": "string"
                     },
                     "complete": {
                         "type": "boolean",
                         "description": "If true, the order is considered completed.",
                         "example": true,
-                        "x-ibm-examples": [
+                        "x-ibm-examples": "check out"
                             false
                         ]
                     }
@@ -611,11 +611,8 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the category.",
-                        "example": "Dogs",
-                        "x-ibm-examples": [
-                            "Cats",
-                            "Birds"
-                        ]
+                        "example": "a",
+                        "x-ibm-examples": "b"
                     }
                 },
                 "xml": {
