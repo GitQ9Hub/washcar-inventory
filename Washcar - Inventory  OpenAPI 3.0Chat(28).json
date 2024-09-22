@@ -1,0 +1,2060 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Washcar Inventory  OpenAPI 30",
+        "description": "This is a sample Washcar Inventory Server based on the OpenAPI.0 specification to manage cars into the washcar.",
+        "x-ibm-annotations": "true",
+        "x-ibm-application-name": "CarwashBot",
+        "x-ibm-application-id": "washcar-inventory",
+        "x-ibm-skill-type": "imported",
+        "version": "1.0.1",
+        "x-ibm-application-icon": "<svg/></svg>",
+        "x-ibm-skill-subtype": "public"
+    },
+    "counts": {
+        "actions": 6,
+        "intents": 3,
+        "entities": 9,
+        "data_types": 0,
+        "collections": 0,
+        "global_variables": 0
+    },
+    "status": "Available",
+    "language": "en",
+    "skill_id": "56aece6c-7ee7-43b8-859e-d2ecfdc97be1",
+    "workspace": {
+        "actions": [
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "digression_failure",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "Sorry I couldn't confirm if you wanted to return to previous topic, let me connect to an agent."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "digression_failure",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "Failed to confirm topic return"
+                                }
+                            ]
+                        },
+                        "next_step": "step_001"
+                    },
+                    {
+                        "step": "step_001",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "I'm afraid I don't understand. I can connect you to an agent."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "step_001",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "Step validation failed"
+                                }
+                            ]
+                        },
+                        "next_step": "step_002"
+                    },
+                    {
+                        "step": "step_002",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "step_002",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "Agent requested"
+                                }
+                            ]
+                        },
+                        "next_step": "step_003"
+                    },
+                    {
+                        "step": "step_003",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "step_003",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "No action matches"
+                                }
+                            ]
+                        },
+                        "next_step": "step_004"
+                    },
+                    {
+                        "step": "step_004",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "step_004",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "Danger word detected"
+                                }
+                            ]
+                        },
+                        "next_step": "step_005"
+                    },
+                    {
+                        "step": "step_005",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "connect_to_agent",
+                            "response": {
+                                "transfer_info": {
+                                    "target": {}
+                                },
+                                "agent_available": {
+                                    "message": "Let's send you to an available agent."
+                                },
+                                "agent_unavailable": {
+                                    "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                                },
+                                "message_to_human_agent": ""
+                            }
+                        },
+                        "variable": "step_005",
+                        "condition": {
+                            "eq": [
+                                {
+                                    "system_variable": "fallback_reason"
+                                },
+                                {
+                                    "scalar": "Profanity detected"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "title": "Fallback",
+                "action": "fallback",
+                "boosts": [],
+                "handlers": [],
+                "condition": {
+                    "intent": "fallback_connect_to_agent"
+                },
+                "variables": [
+                    {
+                        "title": "Topic return failed",
+                        "variable": "digression_failure",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "I'm afraid I don't understand. I can connect you to an agent.",
+                        "variable": "step_001",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+                        "variable": "step_002",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "I am afraid I do not understand what you are asking, let me conn",
+                        "variable": "step_003",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "It seems this conversation would be best managed",
+                        "variable": "step_004",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Profanity - It seems this conversation",
+                        "variable": "step_005",
+                        "data_type": "any"
+                    }
+                ],
+                "next_action": "run_always",
+                "disambiguation_opt_out": true
+            },
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "danger_word_detected",
+                        "title": "Connect to agent",
+                        "handlers": [],
+                        "resolver": {
+                            "type": "fallback"
+                        },
+                        "variable": "danger_word_detected_variable",
+                        "condition": {
+                            "entity": "danger_words"
+                        },
+                        "next_step": "profanity_detected"
+                    },
+                    {
+                        "step": "profanity_detected",
+                        "title": "Show warning",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Please use appropriate language when interacting with the assistant."
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "max_hits",
+                                "handler": "max_hits_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "max_hits": 2,
+                        "resolver": {
+                            "type": "end_action"
+                        },
+                        "variable": "profanity_detected_variable",
+                        "condition": {
+                            "entity": "profane_words"
+                        }
+                    }
+                ],
+                "title": "Trigger word detected",
+                "action": "run_always",
+                "boosts": [],
+                "handlers": [],
+                "variables": [
+                    {
+                        "title": "Profanity detected",
+                        "variable": "danger_word_detected_variable",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Profane word detected",
+                        "variable": "profanity_detected_variable",
+                        "data_type": "any"
+                    }
+                ],
+                "next_action": "anything_else"
+            },
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "step_001",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "I'm afraid I don't understand. Please rephrase your question."
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "end_action"
+                        },
+                        "variable": "step_001",
+                        "condition": {
+                            "lte": [
+                                {
+                                    "system_variable": "no_action_matches_count"
+                                },
+                                {
+                                    "scalar": 3
+                                }
+                            ]
+                        },
+                        "next_step": "step_002"
+                    },
+                    {
+                        "step": "step_002",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": ""
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "invoke_another_action_and_end",
+                            "invoke_action": {
+                                "action": "fallback",
+                                "policy": "default",
+                                "parameters": null,
+                                "result_variable": "step_002_result_1"
+                            }
+                        },
+                        "variable": "step_002",
+                        "condition": {
+                            "gt": [
+                                {
+                                    "system_variable": "no_action_matches_count"
+                                },
+                                {
+                                    "scalar": 3
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "title": "No matches",
+                "action": "anything_else",
+                "boosts": [],
+                "handlers": [],
+                "condition": {
+                    "expression": "anything_else"
+                },
+                "variables": [
+                    {
+                        "title": "I am afraid I do not understand what you are asking, please re-p",
+                        "variable": "step_001",
+                        "data_type": "any"
+                    },
+                    {
+                        "variable": "step_002",
+                        "data_type": "any"
+                    },
+                    {
+                        "variable": "step_002_result_1",
+                        "data_type": "any"
+                    }
+                ],
+                "disambiguation_opt_out": true
+            },
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "step_001",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text": "Welcome, how can I assist you?"
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "end_action"
+                        },
+                        "variable": "step_001"
+                    }
+                ],
+                "title": "Greet customer",
+                "action": "welcome",
+                "boosts": [],
+                "handlers": [],
+                "condition": {
+                    "expression": "welcome"
+                },
+                "variables": [
+                    {
+                        "variable": "step_001",
+                        "data_type": "any"
+                    }
+                ],
+                "next_action": "action_13947",
+                "disambiguation_opt_out": true
+            },
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "step_583",
+                        "handlers": [],
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_583"
+                    }
+                ],
+                "title": "I need wash my car",
+                "action": "action_13947",
+                "boosts": [],
+                "handlers": [],
+                "condition": {
+                    "intent": "action_13947_intent_19328"
+                },
+                "variables": [
+                    {
+                        "title": "No response",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_583",
+                        "data_type": "any"
+                    }
+                ],
+                "launch_mode": "learning",
+                "next_action": "action_21142",
+                "topic_switch": {
+                    "allowed_from": true,
+                    "allowed_into": true,
+                    "never_return": false
+                },
+                "disambiguation_opt_out": false
+            },
+            {
+                "type": "standard",
+                "steps": [
+                    {
+                        "step": "step_525",
+                        "title": "Confirmation",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Hello! We are washing today. We offer differents wash services:\n\n**1 Hand car wash**\n\n**2 In-bay automatics**\n\n**3 Touch-free**\n\n**4 Car wash lif**\nEnter the number of wash type Ex: 3 $washtype"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "context": {
+                            "variables": []
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I didn't catch that. Enter a number."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "entity": "sys-number",
+                            "max_tries": 3
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_525",
+                        "next_step": "step_126"
+                    },
+                    {
+                        "step": "step_126",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Enter your FULL NAMEfullname"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential",
+                                    "repeat_on_reprompt": false
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "free_text": true
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_126",
+                        "next_step": "step_968"
+                    },
+                    {
+                        "step": "step_968",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Enter your EMAIL ADRESSemail"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential",
+                                    "repeat_on_reprompt": false
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "entity": "entity_27063",
+                            "max_tries": 3
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_968",
+                        "next_step": "step_190"
+                    },
+                    {
+                        "step": "step_190",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "enter VEHICLE "
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential",
+                                    "repeat_on_reprompt": false
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "free_text": true
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_190",
+                        "next_step": "step_436"
+                    },
+                    {
+                        "step": "step_436",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Enter your Creditcard type$Creditcard type"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "entity": "entity_2492",
+                            "max_tries": 3
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_436",
+                        "next_step": "step_238"
+                    },
+                    {
+                        "step": "step_238",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Enter Creditcard number"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential",
+                                    "repeat_on_reprompt": false
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I didn't catch that. Enter a number."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "entity": "sys-number",
+                            "max_tries": 3
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_238",
+                        "next_step": "step_425"
+                    },
+                    {
+                        "step": "step_425",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Enter creditcard expiration date$creditcard exp"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential",
+                                    "repeat_on_reprompt": false
+                                },
+                                {
+                                    "response_type": "date",
+                                    "repeat_on_reprompt": true
+                                }
+                            ]
+                        },
+                        "handlers": [
+                            {
+                                "type": "not_found",
+                                "title": "validation_not_found_handler",
+                                "output": {
+                                    "generic": [
+                                        {
+                                            "values": [
+                                                {
+                                                    "text_expression": {
+                                                        "concat": [
+                                                            {
+                                                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "response_type": "text",
+                                            "selection_policy": "incremental"
+                                        }
+                                    ]
+                                },
+                                "handler": "validation_not_found_handler",
+                                "resolver": {
+                                    "type": "prompt_again"
+                                },
+                                "next_handler": "validation_not_found_max_tries_handler"
+                            },
+                            {
+                                "type": "not_found_max_tries",
+                                "title": "validation_not_found_max_tries_handler",
+                                "handler": "validation_not_found_max_tries_handler",
+                                "resolver": {
+                                    "type": "fallback"
+                                }
+                            }
+                        ],
+                        "question": {
+                            "entity": "sys-date",
+                            "max_tries": 3
+                        },
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_425",
+                        "next_step": "step_869"
+                    },
+                    {
+                        "step": "step_869",
+                        "output": {
+                            "generic": [
+                                {
+                                    "values": [
+                                        {
+                                            "text_expression": {
+                                                "concat": [
+                                                    {
+                                                        "scalar": "Your required has been approved. Thank you for choosing us.✨"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "response_type": "text",
+                                    "selection_policy": "sequential"
+                                }
+                            ]
+                        },
+                        "handlers": [],
+                        "resolver": {
+                            "type": "end_action"
+                        },
+                        "variable": "step_869",
+                        "next_step": "step_387"
+                    },
+                    {
+                        "step": "step_387",
+                        "handlers": [],
+                        "resolver": {
+                            "type": "continue"
+                        },
+                        "variable": "step_387"
+                    }
+                ],
+                "title": "I need wash my car",
+                "action": "action_21142",
+                "boosts": [],
+                "handlers": [],
+                "condition": {
+                    "intent": "action_21142_intent_45793"
+                },
+                "variables": [
+                    {
+                        "title": "Enter your FULL NAMEfullname",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_126",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "No response",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_136",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "**Car wash lift?**",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_156",
+                        "data_type": "yes_no"
+                    },
+                    {
+                        "title": "enter VEHICLE (MODEL MARK)",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_190",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter your creditcard exipiration dateCreditcard exp",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_196",
+                        "data_type": "date"
+                    },
+                    {
+                        "title": "What is your email adress?email",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_235",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter Creditcard number",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_238",
+                        "data_type": "number"
+                    },
+                    {
+                        "title": "Enter your credit card cvv$Creditcard cvv",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_249",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter your creditcard number and cvv $$creditcard number",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_378",
+                        "data_type": "number"
+                    },
+                    {
+                        "title": "No response",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_387",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter creditcard expiration date$creditcard exp",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_425",
+                        "data_type": "date"
+                    },
+                    {
+                        "title": "Enter your Creditcard type$Creditcard type",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_436",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "The different types of washes we offer are: **Hand car wash** **",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_469",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "What is the model and make of the vehicle?vehicle",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_474",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "**In-bay automatics?**",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_488",
+                        "data_type": "yes_no"
+                    },
+                    {
+                        "title": "No response",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_509",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Confirmation",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_525",
+                        "data_type": "number"
+                    },
+                    {
+                        "title": "What's your full name?$Full name",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_546",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "I need your creditcard information. What is your credit card typ",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_656",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter your Nationai IDNational ID",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_737",
+                        "data_type": "number"
+                    },
+                    {
+                        "title": "which one do you want to choose? **Hand car wash?**",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_812",
+                        "data_type": "yes_no"
+                    },
+                    {
+                        "title": "Your required has been approved. Thank you for choosing us.✨",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_869",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "No response",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_963",
+                        "data_type": "any"
+                    },
+                    {
+                        "title": "Enter your EMAIL ADRESSemail",
+                        "privacy": {
+                            "enabled": false
+                        },
+                        "variable": "step_968",
+                        "data_type": "any"
+                    }
+                ],
+                "description": "the actions need improve",
+                "launch_mode": "learning",
+                "next_action": "fallback",
+                "topic_switch": {
+                    "allowed_from": true,
+                    "allowed_into": true,
+                    "never_return": false
+                },
+                "disambiguation_opt_out": false
+            }
+        ],
+        "intents": [
+            {
+                "intent": "action_21142_intent_45793",
+                "examples": [
+                    {
+                        "text": "I need wash my vehicle"
+                    },
+                    {
+                        "text": "Hey! I’d like the deluxe wash package, please"
+                    },
+                    {
+                        "text": "Hi there! Can you make sure the windows are spotless?"
+                    },
+                    {
+                        "text": "Can you give my car a thorough clean inside and out?"
+                    },
+                    {
+                        "text": "Hello! I’d like a wash and wax combo, please."
+                    },
+                    {
+                        "text": "Hey! Can you focus on the tires and rims?"
+                    },
+                    {
+                        "text": "Hi! Do you offer any eco-friendly wash options?"
+                    },
+                    {
+                        "text": "I need wash my car"
+                    },
+                    {
+                        "text": "Hey there! Can you give my car a nice wash today"
+                    },
+                    {
+                        "text": "Good morning! I’d love a full clean for my car, please."
+                    },
+                    {
+                        "text": "Hi! Can you make my car sparkle"
+                    },
+                    {
+                        "text": "Hello! Can you take care of my car? It needs a good wash."
+                    }
+                ]
+            },
+            {
+                "intent": "fallback_connect_to_agent",
+                "examples": [
+                    {
+                        "text": "Agent help"
+                    },
+                    {
+                        "text": "I would like to speak to a human"
+                    },
+                    {
+                        "text": "Can I connect to an agent?"
+                    },
+                    {
+                        "text": "I would like to speak to someone"
+                    },
+                    {
+                        "text": "Call agent"
+                    }
+                ],
+                "description": "Please transfer me to an agent"
+            },
+            {
+                "intent": "action_13947_intent_19328",
+                "examples": [
+                    {
+                        "text": "I need wash my car"
+                    }
+                ]
+            }
+        ],
+        "entities": [
+            {
+                "entity": "sys-number",
+                "values": []
+            },
+            {
+                "entity": "entity_27063",
+                "values": [
+                    {
+                        "type": "patterns",
+                        "value": "Email",
+                        "patterns": [
+                            "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+                        ]
+                    }
+                ],
+                "fuzzy_match": true
+            },
+            {
+                "entity": "entity_19947",
+                "values": [
+                    {
+                        "type": "patterns",
+                        "value": "Email",
+                        "patterns": [
+                            "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+                        ]
+                    }
+                ],
+                "fuzzy_match": true
+            },
+            {
+                "entity": "profane_words",
+                "values": [],
+                "fuzzy_match": false
+            },
+            {
+                "entity": "entity_35147",
+                "values": [
+                    {
+                        "type": "patterns",
+                        "value": "Regular_expression",
+                        "patterns": [
+                            "Mastercard, Visa, American Express"
+                        ]
+                    }
+                ],
+                "fuzzy_match": true
+            },
+            {
+                "entity": "sys-yes-no",
+                "values": []
+            },
+            {
+                "entity": "danger_words",
+                "values": [],
+                "fuzzy_match": false
+            },
+            {
+                "entity": "entity_2492",
+                "values": [
+                    {
+                        "type": "patterns",
+                        "value": "Creditcard type",
+                        "patterns": [
+                            "VISA"
+                        ]
+                    }
+                ],
+                "fuzzy_match": true
+            },
+            {
+                "entity": "sys-date",
+                "values": []
+            }
+        ],
+        "metadata": {
+            "api_version": {
+                "major_version": "v2",
+                "minor_version": "2021-11-27"
+            },
+            "skill": {
+                "counts": {
+                    "actions": 6,
+                    "intents": 3,
+                    "entities": 9,
+                    "data_types": 0,
+                    "collections": 0,
+                    "global_variables": 0
+                }
+            }
+        },
+        "variables": [],
+        "data_types": [],
+        "collections": [],
+        "counterexamples": [],
+        "system_settings": {
+            "nlp": {
+                "model": "latest"
+            },
+            "variable": {
+                "format": {
+                    "time": {
+                        "pattern": "short"
+                    },
+                    "currency": {
+                        "fraction_digits": 2
+                    }
+                }
+            },
+            "off_topic": {
+                "enabled": true
+            },
+            "auto_learn": {
+                "apply": true
+            },
+            "launch_mode": {
+                "default": "learning",
+                "enabled": false,
+                "learning": {
+                    "step_retry_threshold": 2,
+                    "use_connect_to_support": "more_often",
+                    "single_answer_clarification": "more_often",
+                    "disambiguation_clarification": "more_often"
+                },
+                "confident": {
+                    "step_retry_threshold": 4,
+                    "use_connect_to_support": "sometimes",
+                    "single_answer_clarification": "sometimes",
+                    "disambiguation_clarification": "sometimes"
+                }
+            },
+            "topic_switch": {
+                "enabled": true,
+                "messages": {
+                    "enable_confirmation": true,
+                    "confirmation_failure": {
+                        "generic": [
+                            {
+                                "values": [
+                                    {
+                                        "text_expression": {
+                                            "concat": [
+                                                {
+                                                    "scalar": "I'm sorry, I did not catch that, please confirm."
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "response_type": "text",
+                                "selection_policy": "sequential"
+                            }
+                        ]
+                    },
+                    "confirmation_request": {
+                        "generic": [
+                            {
+                                "values": [
+                                    {
+                                        "text_expression": {
+                                            "concat": [
+                                                {
+                                                    "scalar": "Do you want to continue with the previous topic: "
+                                                },
+                                                {
+                                                    "system_variable": "digressed_from"
+                                                },
+                                                {
+                                                    "scalar": "?"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "response_type": "text",
+                                "selection_policy": "sequential"
+                            },
+                            {
+                                "options": [
+                                    {
+                                        "label": "Yes",
+                                        "value": {
+                                            "input": {
+                                                "text": "Yes"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": {
+                                            "input": {
+                                                "text": "No"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "response_type": "option",
+                                "repeat_on_reprompt": true
+                            }
+                        ]
+                    }
+                },
+                "max_tries": 3
+            },
+            "generative_ai": {
+                "slot_filling": {
+                    "enabled": true
+                },
+                "general_purpose_answering": {
+                    "enabled": false
+                }
+            },
+            "disambiguation": {
+                "prompt": "Did you mean:",
+                "enabled": true,
+                "randomize": true,
+                "max_suggestions": 5,
+                "suggestion_text_policy": "title",
+                "none_of_the_above_prompt": "None of the above",
+                "use_connect_to_support_prompt": "Connect to support",
+                "single_answer_clarification_prompt": "Something else"
+            },
+            "search_routing": {
+                "target": "conversational_search"
+            },
+            "spelling_auto_correct": true
+        },
+        "learning_opt_out": true,
+        "language": "en"
+    },
+    "description": "created for assistant b976f789-9c01-488d-9ad9-ab5e8adddb77",
+    "dialog_settings": {
+        "source_assistant": "15c44a86-0998-4ea5-96f6-35c902930c85"
+    },
+    "created": "2024-09-19T20:13:22.553Z",
+    "updated": "2024-09-19T20:13:22.553Z",
+    "snapshot": "1",
+    "assistant_id": "b976f789-9c01-488d-9ad9-ab5e8adddb77",
+    "assistant_references": [],
+    "tags": [
+        {
+            "name": "car",
+            "description": "Everything about your Cars"
+        },
+        {
+            "name": "washcar",
+            "description": "Access to Washcar orders"
+        },
+        {
+            "name": "user",
+            "description": "Operations about user"
+        }
+    ],
+    "paths": {
+        "/Car": {
+            "patch": {
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "components": {
+                    "schemas": {
+                        "Car": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "make": {
+                                    "type": "string"
+                                },
+                                "model": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/car": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Errors"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Errors"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Car"
+                            }
+                        }
+                    },
+                    "description": "Update an existing car by Id"
+                },
+                "tags": [
+                    "car"
+                ],
+                "summary": "Update an existing car",
+                "operationId": "updateCar",
+                "x-ibm-ui-extension": {
+                    "component": "dropdown",
+                    "actions": [
+                        {
+                            "skill_id": "<skill_id where it is refering from>",
+                            "type": "data",
+                            "params": {}
+                        }
+                    ]
+                }
+            }
+        },
+        "/car/findByStatus": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        },
+                        "description": "a list of cars"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "description": "Returns a list of cars based on their status",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Finds Cars by status",
+                "operationId": "findCarsByStatus",
+                "x-ibm-next-actions": [
+                    {
+                        "utterance": "Email it",
+                        "skill_id": "email-agent"
+                    }
+                ]
+            }
+        },
+        "/car/{carId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        },
+                        "description": "A single car"
+                    },
+                    "400": {
+                        "description": "Invalid ID supply"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                },
+                "description": "Returns a single car",
+                "tags": [
+                    "car"
+                ],
+                "summary": "Get a car by ID",
+                "operationId": "getCarById"
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        },
+                        "description": "A single car"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Car"
+                            }
+                        }
+                    }
+                },
+                "description": "Updates the details of a car",
+                "summary": "Update a car by ID",
+                "operationId": "updateCarById",
+                "tags": [
+                    "car"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "apikey",
+                        "in": "query",
+                        "description": "The API key of the app that is making the request.",
+                        "example": "123456789",
+                        "x-ibm-examples": [
+                            "abcdefghij",
+                            "klmnopqrst"
+                        ],
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid car value"
+                    }
+                },
+                "tags": [
+                    "car"
+                ],
+                "summary": "Deletes a car",
+                "operationId": "deleteCar",
+                "x-ibm-show": "true"
+            }
+        },
+        "/washcar/order": {
+            "post": {
+                "responses": {
+                    "400": {
+                        "description": "Invalid car value"
+                    }
+                },
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Errors"
+                            }
+                        }
+                    }
+                },
+                "description": "Place a new order in the washcar",
+                "tags": [
+                    "washcar"
+                ],
+                "summary": "Place an order for a car",
+                "operationId": "placeOrder"
+            }
+        },
+        "/washar/order/{orderId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "query",
+                        "description": "ID of car to fetch",
+                        "example": 123456789,
+                        "x-ibm-examples": [
+                            987654321,
+                            111111111
+                        ],
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Order not found"
+                    }
+                },
+                "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.",
+                "tags": [
+                    "washcar"
+                ],
+                "summary": "Find purchase order by ID",
+                "operationId": "getOrderById"
+            }
+        },
+        "/washcar/order/{orderId}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "query",
+                        "description": "ID of the order that needs to be deleted",
+                        "example": 12345,
+                        "x-ibm-examples": [
+                            54321,
+                            98765
+                        ],
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "statusParam": {
+                "in": "query",
+                "name": "status",
+                "description": "Status values that need to be considered for filter",
+                "required": false,
+                "explode": true,
+                "x-ibm-ui-extension": {
+                    "component": "dropdown",
+                    "actions": [
+                        {
+                            "skill_id": "status1.0.0",
+                            "type": "data",
+                            "params": null
+                        }
+                    ]
+                },
+                "schema": {
+                    "default": "check in",
+                    "type": "string",
+                    "enum": [
+                        "check in",
+                        "pending",
+                        "washing",
+                        "available",
+                        "chek out"
+                    ]
+                }
+            }
+        },
+        "requestBodies": {
+            "Car": {
+                "description": "Car object that needs to be added to the washcar",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Car"
+                        }
+                    }
+                }
+            },
+            "UserArray": {
+                "description": "List of user object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "basic_auth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        },
+        "schemas": {
+            "Car": true,
+            "Errors": true,
+            "Status": true
+        }
+    }
+}
